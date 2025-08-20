@@ -1,50 +1,48 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
 class TimerService extends ChangeNotifier {
-  final player = AudioPlayer();
-
-  Timer? timer;
-  double currentDuration = 1500; //1500
-  double selectedTime = 1500; //1500
-  bool timerPlaying = false;
+  late int currentDuration;
+  int selectedTime = 1500; // Default 25 min
+  String currentState = "FOCUS";
   int rounds = 0;
   int goal = 0;
-  String currentState = "FOCUS";
+  Timer? timer;
+  final player = AudioPlayer();
+
+  TimerService() {
+    currentDuration = selectedTime;
+  }
 
   void start() {
-    timerPlaying = true;
-
-    timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      if ( currentDuration == 0) {
-        handleNextRound();
-      } else {
+    timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (currentDuration > 0) {
         currentDuration--;
-        notifyListeners();
+      } else {
+        handleNextRound();
       }
+      notifyListeners();
     });
   }
 
   void pause() {
     timer?.cancel();
-    timerPlaying = false;
-    notifyListeners();
-
-  }
-
-  void selectTime(double seconds) {
-    selectedTime = seconds;
-    currentDuration = seconds;
     notifyListeners();
   }
 
   void reset() {
-    timer?.cancel();
+    pause();
+    currentDuration = selectedTime;
     currentState = "FOCUS";
-    currentDuration = selectedTime = 1500; //1500
-    rounds = goal = 0;
-    timerPlaying = false;
+    rounds = 0;
+    goal = 0;
+    notifyListeners();
+  }
+
+  void setSelectedTime(int seconds) {
+    selectedTime = seconds;
+    currentDuration = seconds;
     notifyListeners();
   }
 
@@ -56,24 +54,20 @@ class TimerService extends ChangeNotifier {
 
     if (currentState == "FOCUS" && rounds != 3) {
       currentState = "BREAK";
-      currentDuration = 300; //300
-      selectedTime = 300; //300
+      currentDuration = 300; // 5 min short break
       rounds++;
       goal++;
-    } else if ( currentState == "BREAK") {
+    } else if (currentState == "BREAK") {
       currentState = "FOCUS";
-      currentDuration = 1500; //1500 is rest
-      selectedTime = 1500;
-    } else if (currentState == "FOCUS" && rounds == 3 ) {
+      currentDuration = selectedTime; // go back to user's chosen focus time
+    } else if (currentState == "FOCUS" && rounds == 3) {
       currentState = "LONGBREAK";
-      currentDuration = 1500;
-      selectedTime = 1500;
+      currentDuration = 1500; // 15 min long break
       rounds++;
       goal++;
     } else if (currentState == "LONGBREAK") {
       currentState = "FOCUS";
-      currentDuration = 1500;
-      selectedTime = 1500;
+      currentDuration = selectedTime; // back to user's chosen focus time
       rounds = 0;
     }
 
@@ -81,4 +75,9 @@ class TimerService extends ChangeNotifier {
     notifyListeners();
   }
 
+  String get currentDurationFormatted {
+    int minutes = currentDuration ~/ 60;
+    int seconds = currentDuration % 60;
+    return "$minutes:${seconds.toString().padLeft(2, '0')}";
+  }
 }
