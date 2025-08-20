@@ -31,7 +31,6 @@ TextStyle textStyleDecorated(
 
 
 List selectableTimes = [
-  "0",
   "300", 
   "600",
   "900",
@@ -42,7 +41,8 @@ List selectableTimes = [
   "2400",
   "2700",
   "3000",
-  "3300"
+  "3300",
+  "3600"
 ];
 
 Color renderColor(String currentState){

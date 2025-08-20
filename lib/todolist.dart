@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:studybuddy/utils.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class TodoList extends StatelessWidget {
   const TodoList({
-    super.key, 
+    super.key,
     required this.taskName,
     required this.taskCompleted,
     required this.onChanged,
@@ -19,12 +18,7 @@ class TodoList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        top: 20,
-        left: 20,
-        right: 20, 
-        bottom: 0,
-      ),
+      padding: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 0),
       child: Slidable(
         key: ValueKey(taskName),
         endActionPane: ActionPane(
@@ -47,30 +41,30 @@ class TodoList extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
           ),
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start, // align checkbox top
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Checkbox(
-                value: taskCompleted, 
+                value: taskCompleted,
                 onChanged: onChanged,
                 checkColor: Colors.black,
                 activeColor: Colors.white,
                 side: const BorderSide(color: Colors.white),
               ),
               const SizedBox(width: 10),
-              Expanded(  // ← make text take remaining space and wrap
+              Expanded(
                 child: Text(
                   taskName,
-                  style: textStyleDecorated( 
-                    18,
-                    color: Colors.white,
-                    decoration: taskCompleted
-                        ? TextDecoration.lineThrough
-                        : TextDecoration.none,
-                    decorationColor: Colors.blue.shade700,
-                    decorationThickness: 2.0,
-                  ),
-                  softWrap: true,          // allow wrapping
-                  overflow: TextOverflow.visible, // show all text
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: Colors.white,
+                        decoration: taskCompleted
+                            ? TextDecoration.lineThrough
+                            : TextDecoration.none,
+                        decorationColor: Colors.red,
+                        decorationThickness: 3.0,
+                        fontSize: 18,
+                      ),
+                  softWrap: true,
+                  overflow: TextOverflow.visible,
                 ),
               ),
             ],

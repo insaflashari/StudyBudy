@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:studybuddy/todolist.dart'; // updated import
-import 'utils.dart';
+import 'package:studybuddy/todolist.dart';
+import 'package:studybuddy/utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
 class TodoScreen extends StatefulWidget {
   const TodoScreen({super.key});
@@ -11,27 +13,61 @@ class TodoScreen extends StatefulWidget {
 
 class _TodoScreenState extends State<TodoScreen> {
   final _controller = TextEditingController();
-  final List<List<Object>> toDoList = [
-    ['To-do #1 (swipe left to delete)', false],
-  ];
+  List<Map<String, dynamic>> toDoList = [];
 
-  void checkBoxChanged(int index) {
-    setState(() {
-      toDoList[index][1] = !(toDoList[index][1] as bool);
-    });
+  @override
+  void initState() {
+    super.initState();
+    loadTasks(); // load saved tasks when app starts
   }
 
-  void saveNewTask() {
+  // Save tasks to SharedPreferences
+  Future<void> saveTasks() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('todo_list', jsonEncode(toDoList));
+  }
+
+  // Load tasks from SharedPreferences
+  Future<void> loadTasks() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? encoded = prefs.getString('todo_list');
+    if (encoded != null) {
+      List<dynamic> decoded = jsonDecode(encoded);
+      setState(() {
+        toDoList = decoded.cast<Map<String, dynamic>>();
+      });
+    } else {
+      // First launch: show default example task
+      setState(() {
+        toDoList = [
+          {'name': 'To-do #1 (swipe left to delete)', 'completed': false},
+        ];
+      });
+      await saveTasks(); // save default task for next launches
+    }
+  }
+
+  void checkBoxChanged(int index) async {
     setState(() {
-      toDoList.add([_controller.text, false]);
+      toDoList[index]['completed'] = !(toDoList[index]['completed'] as bool);
+    });
+    await saveTasks();
+  }
+
+  void saveNewTask() async {
+    if (_controller.text.isEmpty) return;
+    setState(() {
+      toDoList.add({'name': _controller.text, 'completed': false});
       _controller.clear();
     });
+    await saveTasks();
   }
 
-  void deleteTask(int index) {
+  void deleteTask(int index) async {
     setState(() {
       toDoList.removeAt(index);
     });
+    await saveTasks();
   }
 
   @override
@@ -41,21 +77,17 @@ class _TodoScreenState extends State<TodoScreen> {
       appBar: AppBar(
         title: Text(
           "TO-DO LIST",
-          style: textStyle(
-            25,
-            Colors.white,
-            FontWeight.w700,
-          ),
+          style: textStyle(25, Colors.white, FontWeight.w700),
         ),
-        backgroundColor: Colors.blue, // AppBar background
+        backgroundColor: Colors.blue,
         centerTitle: true,
       ),
       body: ListView.builder(
         itemCount: toDoList.length,
         itemBuilder: (BuildContext context, int index) {
           return TodoList(
-            taskName: toDoList[index][0] as String,
-            taskCompleted: toDoList[index][1] as bool,
+            taskName: toDoList[index]['name'] as String,
+            taskCompleted: toDoList[index]['completed'] as bool,
             onChanged: (value) => checkBoxChanged(index),
             deleteFunction: (context) => deleteTask(index),
           );
@@ -72,19 +104,15 @@ class _TodoScreenState extends State<TodoScreen> {
                   controller: _controller,
                   decoration: InputDecoration(
                     hintText: 'Add a new to-do item',
-                    hintStyle: TextStyle(color: Colors.white70,),
+                    hintStyle: TextStyle(color: Colors.white70),
                     filled: true,
                     fillColor: Colors.blue.shade300,
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.blue.shade400,
-                      ),
+                      borderSide: BorderSide(color: Colors.blue.shade400),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.blue,
-                      ),
+                      borderSide: BorderSide(color: Colors.blue),
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
