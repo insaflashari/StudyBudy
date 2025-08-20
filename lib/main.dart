@@ -50,7 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   final List<String> _labels = [
-    "study buddy",
+    "Pomodoro",
+    "To-Do"
   ];
 
   void _onItemTapped(int index) {
