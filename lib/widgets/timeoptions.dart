@@ -10,7 +10,7 @@ class TimeOptions extends StatelessWidget {
     final provider = Provider.of<TimerService>(context);
 
     return SingleChildScrollView(
-      controller: ScrollController(initialScrollOffset: 240),
+      controller: ScrollController(initialScrollOffset: 320),
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [

@@ -42,7 +42,14 @@ List selectableTimes = [
   "2700",
   "3000",
   "3300",
-  "3600"
+  "3600",
+  "3900",
+  "4200",
+  "4500",
+  "4800",
+  "5100",
+  "5400"
+
 ];
 
 Color renderColor(String currentState){
