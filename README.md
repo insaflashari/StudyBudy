@@ -1,6 +1,7 @@
 # 📚 StudyBuddy
 
 **StudyBuddy** is a simple and effective productivity app built with **Flutter & Dart**, designed to help students focus, stay organized, and make the most of their study sessions.  
+<img width="1024" height="1024" alt="icon" src="https://github.com/user-attachments/assets/c74e4735-620f-4d1d-8b7f-d830d2368b5e" />
 
 ---
 
