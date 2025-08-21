@@ -16,7 +16,7 @@ class _TimeOptionsState extends State<TimeOptions> {
   void initState() {
     super.initState();
     // Approx width + margin per item = 80, adjust if needed
-    _scrollController = ScrollController(initialScrollOffset: 25 * 80.0);
+    _scrollController = ScrollController(initialScrollOffset: 160);
   }
 
   @override
