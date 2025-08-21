@@ -5,18 +5,24 @@
 
 ---
 
-## Features <img src="https://github.com/user-attachments/assets/c74e4735-620f-4d1d-8b7f-d830d2368b5e" alt="icon" width="40" style="vertical-align: middle;"/> 
+## Features
 
-### ⏱ Pomodoro Timer
-- Choose your study session length from **5 minutes up to 90 minutes**.  
-- Helps you stay focused and manage your time efficiently.  
-- Lightweight, easy-to-use interface.
+## ⏱ Pomodoro Timer
+<img src="https://github.com/user-attachments/assets/c74e4735-620f-4d1d-8b7f-d830d2368b5e" alt="Pomodoro Icon" width="120" align="right"/>
 
-### 📝 Todo List
-- Add tasks quickly and keep track of your work.  
-- **Swipe left to delete** any task.  
-- **Check off completed tasks** — they’ll get crossed off your list.  
-- Simple, intuitive UI keeps you organized without distractions.
+Choose your study session length from **5 minutes up to 90 minutes**.  
+Helps you stay focused and manage your time efficiently.  
+Lightweight, easy-to-use interface.  
+
+---
+
+## 📝 Todo List
+<img src="https://github.com/user-attachments/assets/c74e4735-620f-4d1d-8b7f-d830d2368b5e" alt="Todo Icon" width="120" align="right"/>
+
+Add tasks quickly and keep track of your work.  
+**Swipe left to delete** any task.  
+**Check off completed tasks** — they’ll get crossed off your list.  
+Simple, intuitive UI keeps you organized without distractions.  
 
 ---
 
