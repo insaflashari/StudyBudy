@@ -1,6 +1,3 @@
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/c74e4735-620f-4d1d-8b7f-d830d2368b5e" alt="icon" width="120"/>
-</p>
 
 # 📚 StudyBuddy
 
@@ -8,7 +5,7 @@
 
 ---
 
-## Features
+## Features <img src="https://github.com/user-attachments/assets/c74e4735-620f-4d1d-8b7f-d830d2368b5e" alt="icon" width="40" style="vertical-align: middle;"/> 
 
 ### ⏱ Pomodoro Timer
 - Choose your study session length from **5 minutes up to 90 minutes**.  
