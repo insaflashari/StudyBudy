@@ -47,7 +47,18 @@
 ---
 
 ## Screenshots
-*(Add your screenshots here for better appeal)*
+MOBILE APP
+![1000043943](https://github.com/user-attachments/assets/a6793ecc-1058-4805-80da-ba4bc760a20e)
+![1000043947](https://github.com/user-attachments/assets/95874acd-aa27-49e1-8c7d-bc398b0ddd24)
+![1000043948](https://github.com/user-attachments/assets/d467d011-778c-4fb9-857d-c3a69097254b)
+
+![1000043944](https://github.com/user-attachments/assets/ee05d2d3-0bdd-4071-bc88-4e04f34678c5)
+![1000043945](https://github.com/user-attachments/assets/657f67f6-b31b-46a4-b07e-d583e3249266)
+![1000043946](https://github.com/user-attachments/assets/f7b07ff1-ce84-4414-b330-f0f402f206c1)
+
+WEP APP
+<img width="1366" height="594" alt="Screenshot (9)" src="https://github.com/user-attachments/assets/7ff93b3a-18f6-4e8c-b520-60a3774a1ed1" />
+<img width="1366" height="597" alt="Screenshot (10)" src="https://github.com/user-attachments/assets/be0c9401-316b-4a82-8725-f25d13f2ae0d" />
 
 ---
 
